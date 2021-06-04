@@ -1,4 +1,4 @@
-const handleRegister = (db, bcrypt) => (req, res) => {
+const handleRegister = (db, bcrypt, req, res) => {
 	const {email, name, password}=req.body;
 	if(!email || !password || !name) {
     return res.status(400).json('incorrect form submission');
@@ -21,6 +21,7 @@ const handleRegister = (db, bcrypt) => (req, res) => {
 					joined: new Date()
 				})
 				.then(user => {
+					// console.log(user);
 					res.json(user[0]);
 				})      
 			})

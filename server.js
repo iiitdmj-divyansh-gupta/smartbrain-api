@@ -23,15 +23,15 @@ const db = knex({
 
 const app=express();
 
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 
 app.get('/', (req, res) => {res.send('It is working')});
 
 // dependency injection
 app.post('/signin', (req, res) => {signin.handleSignin(req, res, db, bcrypt)})
 // same thing written in two other ways using advanced functions
-app.post('/register', (req, res) => {register.handleRegister(db, bcrypt)(req, res)})
+app.post('/register', (req, res) => {register.handleRegister(db, bcrypt, req, res)})
 app.get('/profile/:id', profile.handleProfileGet(db))
 app.put('/image', (req, res) => {image.handleImage(req, res, db)})
 app.post('/imageurl', (req, res) => {image.handleApiCall(req, res)})
