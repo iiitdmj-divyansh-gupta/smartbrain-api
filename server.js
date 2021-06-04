@@ -28,10 +28,7 @@ const app=express();
 app.use(express.json());
 app.use(cors());
 
-app.get('/', (req, res) => {
-	// res.send(database.users);
-	res.send('It is working');
-})
+app.get('/', (req, res) => {res.send('It is working')});
 
 // dependency injection
 app.post('/signin', (req, res) => {signin.handleSignin(req, res, db, bcrypt)})
